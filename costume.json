@@ -1,0 +1,54 @@
+{
+    "_01": {
+        "names": [
+            "santa",
+            "xmas",
+            "christmas"
+        ],
+        "ishat": "true"
+    },
+    "_02": {
+        "names": [
+            "party"
+        ],
+        "ishat": "true"
+    },
+    "_03": {
+        "names": [
+            "ash"
+        ],
+        "ishat": "true"
+    },
+    "_04": {
+        "names": [
+            "witch"
+        ],
+        "ishat": "true"
+    },
+    "_05": {
+        "names": [
+            "sunglasses"
+        ],
+        "ishat": "false"
+    },
+    "_06": {
+        "names": [
+            "black",
+            "fracture"
+        ],
+        "ishat": "true"
+    },
+    "_07": {
+        "names": [
+            "flower"
+        ],
+        "ishat": "false"
+    },
+    "_08": {
+        "names": [
+            "winter",
+            "bell"
+        ],
+        "ishat": "false"
+    }
+}

@@ -1,0 +1,13 @@
+TODO:        
+    - make sure marketKey not already in use
+    - make delete a separate function???
+    - friend code holder?
+
+
+Done:
+    - use reactions for easy deletion
+    - pokemon misspelling catcher
+    - costumes in json array for easy adding/subtracting
+    - fairly solid url creater - with plenty of defaults
+    - multi poke for multi poke
+    - randomly color sidebar
