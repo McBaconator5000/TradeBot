@@ -11,5 +11,7 @@ Required npms. Run these commands before starting up TradeBot
   
   >npm i jimp
   
+  >npm i randomstring
+  
 Start TradeBot with:
   >node .  
