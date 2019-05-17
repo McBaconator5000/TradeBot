@@ -13,7 +13,10 @@ bot.registry.registerGroup('admin', 'Admin');
 bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + "/commands");
 
-
+//put help command as playing
+bot.on('ready', () => {
+    bot.user.setActivity("For help type: \n !docs")
+})
 
 
 //error catcher

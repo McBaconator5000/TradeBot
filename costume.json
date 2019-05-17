@@ -40,7 +40,8 @@
     },
     "_07": {
         "names": [
-            "flower"
+            "flower",
+            "flower crown"
         ],
         "ishat": "false"
     },
@@ -50,5 +51,11 @@
             "bell"
         ],
         "ishat": "false"
+    },
+    "_09": {
+        "names": [
+            "detective"
+        ],
+        "ishat": "true"
     }
 }
