@@ -46,6 +46,73 @@ module.exports = {
         if(args.includes("alola")){
             typeNum = 61;
         }
+
+        /////////form stuff//////
+        if(pokeNum == "421" && args.includes("sunny")){
+            //cherrim 421
+            typeNum = 12
+        }
+        if(pokeNum == "351"){
+            //castform 351
+            if(args.includes("sunny")){
+                typeNum = 12
+            }else if(args.includes("rainy")){
+                typeNum = 13
+            }else if(args.includes("snowy")){
+                typeNum = 14
+            }
+        }
+        if(pokeNum == "386"){
+            //deoxys 386
+            if(args.includes("attack")){
+                typeNum = 12
+            }else if(args.includes("defense")){
+                typeNum = 13
+            }else if(args.includes("speed")){
+                typeNum = 14
+            }
+        }
+        if((pokeNum == "421" || pokeNum == "422") && args.includes("east")){
+            //shellos / gastrodon 422/423
+            typeNum = 12
+        }
+        if(pokeNum == "412" || pokeNum == "413"){
+            //burmy/ wormadam 412 /413
+            if(args.includes("plant")){
+                typeNum = 11
+            }else if(args.includes("sand")){
+                typeNum = 12
+            }else if(args.includes("trash")){
+                typeNum = 13
+            }
+        }
+        if(pokeNum == "487" && args.includes("origin")){
+            //giratina 487
+            typeNum = 12
+        }
+        if(pokeNum == "479"){
+            //rotom 479
+            if(args.includes("heat")){
+                typeNum = 12
+            }else if(args.includes("wash")){
+                typeNum = 13
+            }else if(args.includes("frost")){
+                typeNum = 14
+            }else if(args.includes("fan")){
+                typeNum = 15
+            }else if(args.includes("mow")){
+                typeNum = 16
+            }
+        }
+        if(pokeNum == "492" && args.includes("sky")){
+            //shamin 492
+            typeNum = 12
+        }
+        //arceus 493
+        //spinda??? 327
+
+
+
         //converts nubmer to 2 digit string
         typeNumStr = pad(typeNum,2)
         //first build of url
@@ -82,6 +149,9 @@ module.exports = {
                 url = "https://raw.githubusercontent.com/ZeChrales/PogoAssets/master/pokemon_icons/pokemon_icon_"+pokeNum+"_"+"00"+shinyStr+".png" //default pokemon icon
             }
         }
+        
+        
+
 
         //adding costumes 
         var costume = "";

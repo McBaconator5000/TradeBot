@@ -9,6 +9,7 @@ const util = require('util');
 const fs_writeFile = util.promisify(fs.writeFile);
 
 bot.registry.registerGroup('market', 'Market');
+bot.registry.registerGroup('friends', 'Friends');
 bot.registry.registerGroup('admin', 'Admin');
 bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + "/commands");

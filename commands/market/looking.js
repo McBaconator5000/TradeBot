@@ -2,8 +2,8 @@ const commando = require('discord.js-commando');
 const fs = require('fs');
 const util = require('util');
 const fs_writeFile = util.promisify(fs.writeFile);
-const randomString = require('randomstring');
 let looks = JSON.parse(fs.readFileSync("./looks.json", "utf8"));
+const randomString = require('randomstring');
 const Jimp = require('jimp');
 const func = require('../../functions.js');
 
