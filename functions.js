@@ -4,6 +4,7 @@ const util = require('util');
 const urlExists = util.promisify(require('url-exists'));
 const stringSimilarity = require('string-similarity');
 const Jimp = require('jimp');
+const arceus = require('./arceusforms.json')
 
 String.prototype.insert = function (index, string) {
     if (index > 0)
@@ -54,11 +55,11 @@ module.exports = {
         }
         if(pokeNum == "351"){
             //castform 351
-            if(args.includes("sunny")){
+            if(args.includes("sun")){
                 typeNum = 12
-            }else if(args.includes("rainy")){
+            }else if(args.includes("rain")){
                 typeNum = 13
-            }else if(args.includes("snowy")){
+            }else if(args.includes("snow")){
                 typeNum = 14
             }
         }
@@ -108,8 +109,19 @@ module.exports = {
             //shamin 492
             typeNum = 12
         }
-        //arceus 493
-        //spinda??? 327
+        if(pokeNum == "493"){
+            //arceus 493
+            for (var poketype in arceus){
+                if(args.includes(poketype)){
+                    typeNum = arceus[poketype]
+                }
+            }
+        }
+        if(pokeNum == "327"){
+            //spinda 327
+            var spindaNumber = parseInt(pokeArr[pokeArr.length - 2]) //if no form given returns NaN
+            typeNum = spindaNumber + 10 //NaN + 10 is 10, which is default... :D
+        }
 
 
 

@@ -1,0 +1,20 @@
+{
+    "normal":"00",
+    "fire":"12",
+    "water":"13",
+    "electric":"23",
+    "grass":"17",
+    "ice":"21",
+    "fighting":"20",
+    "poison":"14",
+    "ground":"15",
+    "flying":"25",
+    "psychic":"24",
+    "bug":"22",
+    "rock":"16",
+    "ghost":"18",
+    "dragon":"26",
+    "dark":"27",
+    "steel":"19",
+    "fairy":"28"
+}
