@@ -1,7 +1,8 @@
 TODO:        
     - make sure marketKey not already in use
     - make delete a separate function???
-    - friend code holder?
+    - friend code holder
+    - function for spitting out friend code, or include in whois...
 
 
 Done:
@@ -11,3 +12,4 @@ Done:
     - fairly solid url creater - with plenty of defaults
     - multi poke for multi poke
     - randomly color sidebar
+    - form support for all pokemon with forms currently in game

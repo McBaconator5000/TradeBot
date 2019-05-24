@@ -223,6 +223,19 @@ module.exports = {
             }
         }
         return imgName
+    },
+    respond: async function(message, foundUser){
+        var confirmStr = "I found a trainer matching that name."
+
+        message.channel.send(confirmStr)
+            .then(async message => {
+                try{
+                    var memberObj = await message.guild.fetchMember(foundUser)
+                    message.edit(confirmStr + " Their discord name is " + memberObj)
+                }catch{
+                    message.edit(confirmStr + " They're not on this server but you may be able to find them on discord using this tag " + foundUser.tag)
+                }
+            })
     }
 
 

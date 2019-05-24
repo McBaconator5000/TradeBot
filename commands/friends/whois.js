@@ -1,5 +1,7 @@
-const commando = require('discord.js-commando');
+const  commando = require('discord.js-commando');
+const func = require('../../functions.js');
 const fs = require('fs');
+
 
 class WhoIsCommand extends commando.Command{
     constructor(client){
@@ -19,10 +21,12 @@ class WhoIsCommand extends commando.Command{
         });
     }
 
+
     async run(message, args){
         let name = args.name
+        let client = this.client //name client here, will need to use it to find ppl later
 
-        fs.readFile('./friendlist.json', 'utf8', function(err, contents) {
+        fs.readFile('./friendlist.json', 'utf8', async function(err, contents) {
             if(err) throw err
             let friendlist = JSON.parse(contents) //turn raw data into object
             
@@ -30,8 +34,20 @@ class WhoIsCommand extends commando.Command{
 
             for(var id in friendlist){ //go through all list
                 if(friendlist[id].trainerName == name){ //match trainername to name looking for
-                    console.log("Found " + id)
-                } //add other if statements for matching other things
+                    var foundUser = await client.fetchUser(id)
+                    await func.respond(message, foundUser)  
+                ///all of these are the same... combine to one big OR statement??? separate for now as may need it that way for some reason....
+                }else if(friendlist[id].discordName == name){
+                    var foundUser = await client.fetchUser(id)
+                    await func.respond(message, foundUser)
+
+                }else if(friendlist[id].discordTag.includes(name)){
+                    var foundUser = await client.fetchUser(id)
+                    await func.respond(message, foundUser)
+                }
+            }
+            if(foundUser == undefined){///hacky way to see if anyone was found.... foundUser is only defined if found so.... :D
+                message.channel.send("I counldn't find anyone by that name.")
             }
 
         })
