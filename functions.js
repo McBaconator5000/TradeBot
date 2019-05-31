@@ -20,6 +20,19 @@ function pad(num, size){
     return s;
 }
 
+function fourNumbers(str){
+    if(str.length <= 4){
+        return false
+    }else{
+        for(var i = 0; i < 4; i++){
+            if(isNaN(parseInt(str.charAt(i), 10))){
+                return false
+            }
+        }
+        return true //only true if first four chars are numbers
+    }
+}
+
 
 
 
@@ -224,20 +237,54 @@ module.exports = {
         }
         return imgName
     },
-    respond: async function(message, foundUser){
+    respond: async function(message, foundUser, friendCode){
         var confirmStr = "I found a trainer matching that name."
 
         message.channel.send(confirmStr)
             .then(async message => {
                 try{
                     var memberObj = await message.guild.fetchMember(foundUser)
-                    message.edit(confirmStr + " Their discord name is " + memberObj)
+                    await message.edit(confirmStr + " Their discord name is " + memberObj + ".")
+                    if(friendCode != 0){
+                        message.edit(message.content + "\nI'll now print their friend code in a separate message for easy copy/pasting.")
+                        message.channel.send(friendCode)
+                    }
                 }catch{
                     message.edit(confirmStr + " They're not on this server but you may be able to find them on discord using this tag " + foundUser.tag)
                 }
             })
+    },
+    findCode: function(textResult){
+        var lineArray = textResult.split('\n') //split text up by line
+        for(var i = 0; i < lineArray.length; i++){//got through each line of text
+            var lineText = lineArray[i]
+            //console.log(lineText + " : " + fourNumbers(lineText))
+            if(fourNumbers(lineText)){ //look at every line longer than 11 characters and lines with first char is number
+                var noSpaces = lineText.replace(/\s/g, "")//removes spaces
+                var trimmed = noSpaces.substring(0,12) //trim to 12 numbers
+                if(parseInt(trimmed, 10) != NaN){//double check that it is a number
+                    //re-add spaces for easy reading
+                    var readable = trimmed.insert(8, " ")
+                    readable = readable.insert(4, " ")
+                    return readable
+                }
+            }
+        }
+    }, 
+    findIGN: function(textResult){
+        var lineArray = textResult.split('\n') //split text up by line
+        for(var i = 0; i < lineArray.length; i++){//got through each line of text
+            var lineText = lineArray[i]
+            if(lineArray[i+1] != undefined){//check if there is a next line
+                var nextLine = lineArray[i+1]
+                if(nextLine.includes("YOUR TRAINER CODE") || nextLine.includes("TU CODIGO DE ENTRENADOR")){//look for static text the line before will be the trainer name
+                    //remove anything that is not a number or letter.
+                    var trainerName = lineText.replace(/[^A-Za-z0-9]/g, "")
+                    return trainerName
+                }
+            }
+        }
     }
-
 
 }
 

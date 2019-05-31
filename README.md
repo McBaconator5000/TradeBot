@@ -14,6 +14,8 @@ Required npms. Run these commands before starting up TradeBot
   >npm i randomstring
   
   >npm install gazmull/discord-paginationembed#v11
+
+  >npm install tesseract.js@next --save
   
 Start TradeBot with:
   >node .  

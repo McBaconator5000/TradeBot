@@ -35,15 +35,15 @@ class WhoIsCommand extends commando.Command{
             for(var id in friendlist){ //go through all list
                 if(friendlist[id].trainerName == name){ //match trainername to name looking for
                     var foundUser = await client.fetchUser(id)
-                    await func.respond(message, foundUser)  
+                    await func.respond(message, foundUser, friendlist[id].friendCode)  
                 ///all of these are the same... combine to one big OR statement??? separate for now as may need it that way for some reason....
                 }else if(friendlist[id].discordName == name){
                     var foundUser = await client.fetchUser(id)
-                    await func.respond(message, foundUser)
+                    await func.respond(message, foundUser, friendlist[id].friendCode)
 
                 }else if(friendlist[id].discordTag.includes(name)){
                     var foundUser = await client.fetchUser(id)
-                    await func.respond(message, foundUser)
+                    await func.respond(message, foundUser, friendlist[id].friendCode)
                 }
             }
             if(foundUser == undefined){///hacky way to see if anyone was found.... foundUser is only defined if found so.... :D

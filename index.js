@@ -7,6 +7,10 @@ const bot = new commando.Client({
 const fs = require('fs');
 const util = require('util');
 const fs_writeFile = util.promisify(fs.writeFile);
+const func = require('./functions.js');
+var { TesseractWorker } = require('tesseract.js')
+const tessWorker = new TesseractWorker();
+
 
 bot.registry.registerGroup('market', 'Market');
 bot.registry.registerGroup('friends', 'Friends');
@@ -179,6 +183,46 @@ bot.on('messageReactionAdd', async function(reaction, user) {
         }
     }
 });
+
+//message listener - for reading screenshots
+bot.on('message', async function(message){
+
+    if(message.attachments.first() != undefined){//check to see if message has attachment
+        let friendinfo = JSON.parse(fs.readFileSync("./friendlist.json", "utf8"));
+        message.channel.startTyping()
+        var screenshot = message.attachments.first()
+        tessWorker.recognize(screenshot.url)
+            .progress(function  (p) { 
+                //console.log('progress', p)  ///won't need this eventually
+                ///send message informing of processing
+            })
+            .catch(err => console.error(err))
+            .then(function (result) {
+                var friendCode =  func.findCode(result.text)
+                var trainerName = func.findIGN(result.text)
+                //console.log(trainerName + " : " + fcode)
+                ///put functions for parsing result.text here
+
+                friendinfo[message.author.id] = {
+                    discordName: message.author.username,
+                    discordTag: message.author.tag,
+                    trainerName: trainerName,
+                    friendCode: friendCode
+                }
+
+                fs_writeFile("./friendlist.json", JSON.stringify(friendinfo), (err) => {
+                    if (err) console.log(err)
+                }).then(function(results){
+                    
+                    message.channel.send("I have your trainer name saved as: `"+ trainerName + "` and your friend code saved as: `" + friendCode +
+                    "`\n If this is incorrect please use the `!iam` function to manually enter the correct data")
+        
+                    message.channel.stopTyping()
+                })
+
+            })
+    }
+})
 
 
 
