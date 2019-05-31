@@ -187,7 +187,7 @@ bot.on('messageReactionAdd', async function(reaction, user) {
 //message listener - for reading screenshots
 bot.on('message', async function(message){
 
-    if(message.attachments.first() != undefined){//check to see if message has attachment
+    if(message.attachments.first() != undefined && !message.author.bot){//check to see if message has attachment
         let friendinfo = JSON.parse(fs.readFileSync("./friendlist.json", "utf8"));
         message.channel.startTyping()
         var screenshot = message.attachments.first()
